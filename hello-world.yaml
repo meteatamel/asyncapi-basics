@@ -1,0 +1,44 @@
+asyncapi: '2.5.0'
+info:
+  title: Hello world application
+  version: '0.1.0'
+servers:
+  production:
+    url: broker.mycompany.com
+    protocol: amqp
+    description: This is "My Company" broker.
+    security:
+      - user-password: []
+channels:
+  hello:
+    publish:
+      message:
+        $ref: '#/components/messages/hello-msg'
+  goodbye:
+    publish:
+      message:
+        $ref: '#/components/messages/goodbye-msg'
+components:
+  messages:
+    hello-msg:
+      payload:
+        type: object
+        properties:
+          name:
+            type: string
+          sentAt:
+            $ref: '#/components/schemas/sent-at'
+    goodbye-msg:
+      payload:
+        type: object
+        properties:
+          sentAt:
+            $ref: '#/components/schemas/sent-at'
+  schemas:
+    sent-at:
+      type: string
+      description: The date and time a message was sent.
+      format: datetime
+  securitySchemes:
+    user-password:
+      type: userPassword

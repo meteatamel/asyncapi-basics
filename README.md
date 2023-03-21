@@ -6,7 +6,56 @@ This repository contains information, references, and samples about AsyncAPI.
 
 ## AsyncAPI: Why? What?
 
-TODO
+[AsyncAPI](https://www.asyncapi.com/) is an open source initiative with the goal
+of making event-driven APIs as easy as REST APIs. It has a specification that
+allows developers, architects, and product managers to define the interfaces of
+an async API, similar to what OpenAPI (aka Swagger) does for REST APIs.
+
+## Concepts
+
+These are the main concepts in AsyncAPI:
+
+**Broker (Server)**: An infrastructure that receives messages and delivers them
+to those interested. They often store messages until delivered. Example brokers
+are RabbitMQ, Apache Kafka, Solace, etc.
+
+**Publisher (Producer)**: An application that send messages to the broker.
+
+**Subscriber (Consumer)**: An application that listens for particular events
+from a broker.
+
+**Message**: A message is a piece of information that is sent by publishers to
+the broker, and received by all interested subscribers. Can also be defined as
+an *event* (to communicate that a fact has occured) or *command* (to instruct
+subscriber to do something).
+
+**Channel**: Created by the server to organize transmission of messages. Users
+can define channels as a *topic*, *queue*, *routing key*, *path*, or *subject*
+depending on the protocol used.
+
+**Protocol**: A set of rules that specifies how information is exchanged between
+applications and servers such as *WebSockets*, *HTTP*, *Kafka*, *MQTT*.
+
+## How does an Async spec look like?
+
+An application that has a single channel called `hello` and capable of receiving
+messages that match "hello {name}":
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Hello world application
+  version: '0.1.0'
+channels:
+  hello:
+    publish:
+      message:
+        payload:
+          type: string
+          pattern: '^hello .+$'
+```
+
+Another example with a server and multiple channels: [hello-world.yaml](hello-world.yaml).
 
 ## Samples
 
