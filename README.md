@@ -78,7 +78,7 @@ from [asyncapi/spec/examples](https://github.com/asyncapi/spec/tree/master/examp
 mqtt)
 ? open in Studio? No
 Created file asyncapi.yaml...
-``
+```
 
 Generate code from the Async API:
 
