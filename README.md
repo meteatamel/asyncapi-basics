@@ -69,7 +69,7 @@ Another example with a server and multiple channels: [hello-world.yaml](hello-wo
 Generate an AsyncAPI file using the AsyncAPI CLI tool that can pull in samples
 from [asyncapi/spec/examples](https://github.com/asyncapi/spec/tree/master/examples).
 
-``sh
+```sh
 > asyncapi new
 
 ? name of the file? asyncapi.yaml
