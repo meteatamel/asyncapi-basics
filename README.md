@@ -80,7 +80,13 @@ mqtt)
 Created file asyncapi.yaml...
 ```
 
-Generate code from the Async API:
+Validate the AsyncAPI file:
+
+```sh
+asyncapi validate asyncapi.yaml
+```
+
+Generate code from the AsyncAPI file:
 
 ```sh
 asyncapi generate fromTemplate asyncapi.yaml @asyncapi/nodejs-template -o output -p server=mosquitto
@@ -104,7 +110,4 @@ mqtt pub -t 'light/measured' -h 'test.mosquitto.org' -m '{"id": 1, "lumens": 3, 
 
 * [AsyncAPI home](https://www.asyncapi.com/)
 * [Async API GitHub](https://github.com/asyncapi)
-
--------
-
-This is not an official Google product.
+* [Async API Spec](https://github.com/asyncapi/spec)
