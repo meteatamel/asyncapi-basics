@@ -15,26 +15,32 @@ an async API, similar to what OpenAPI (aka Swagger) does for REST APIs.
 
 These are the main concepts in AsyncAPI:
 
-**Broker (Server)**: An infrastructure that receives messages and delivers them
+* **Broker / Server**: An infrastructure that receives messages and delivers them
 to those interested. They often store messages until delivered. Example brokers
 are RabbitMQ, Apache Kafka, Solace, etc.
 
-**Publisher (Producer)**: An application that send messages to the broker.
+* **Publisher / Producer**: An application that send messages to the broker.
 
-**Subscriber (Consumer)**: An application that listens for particular events
+* **Subscriber / Consumer**: An application that listens for particular events
 from a broker.
 
-**Message**: A message is a piece of information that is sent by publishers to
-the broker, and received by all interested subscribers. Can also be defined as
-an *event* (to communicate that a fact has occured) or *command* (to instruct
-subscriber to do something).
-
-**Channel**: Created by the server to organize transmission of messages. Users
+* **Channel**: Created by the server to organize transmission of messages. Users
 can define channels as a *topic*, *queue*, *routing key*, *path*, or *subject*
 depending on the protocol used.
 
-**Protocol**: A set of rules that specifies how information is exchanged between
+* **Protocol**: A set of rules that specifies how information is exchanged between
 applications and servers such as *WebSockets*, *HTTP*, *Kafka*, *MQTT*.
+
+* **Message**: A message is a piece of information that is sent by publishers to
+the broker, and received by all interested subscribers through a channel. Can
+also be defined as an *event* (to communicate that a fact has occured) or
+*command* (to instruct subscriber to do something).
+
+## OpenAPI vs. AsyncAPI
+
+You can see the [following
+diagram](https://www.asyncapi.com/docs/tutorials/getting-started/coming-from-openapi)
+for a comparison between OpenAPI and AsyncAPI.
 
 ## How does an Async spec look like?
 
@@ -57,12 +63,29 @@ channels:
 
 Another example with a server and multiple channels: [hello-world.yaml](hello-world.yaml).
 
+## Publish vs. Subscribe in AsyncAPI
+
+In a channel, you can have `publish` and `subscribe` semantics. This can be
+confusing, depending on which perspective you're considering (server vs. user)
+and what you're comparing against (eg. WebSocket).
+
+| AsyncAPI Term | WebSocket Term | From Server Perspective | From User Perspective |
+| --- | --- | --- | --- |
+| Publish | Send | The server receives the message | The user publishes/sends the message to the server |
+| Subscribe | Receive | The server publishes the message | The user subscribes/receives the message from the server |
+
+It's most useful to think of `publish` and `subscribe` from user's perspective. You can read [Demystifying the Semantics of Publish and
+Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics) for more
+details.
+
 ## Tools
 
 * [AsyncStudio](https://studio.asyncapi.com/): Browser based tool to author and
   visualize and validate AsyncAPI files.
 * [AsyncAPI CLI](https://github.com/asyncapi/cli): CLI based tool to work with
   AsyncAPI files.
+* [AsyncAPI Generator](https://github.com/asyncapi/generator): A number of code
+  generators for various languages and frameworks.
 
 ## Quickstart
 
@@ -110,4 +133,5 @@ mqtt pub -t 'light/measured' -h 'test.mosquitto.org' -m '{"id": 1, "lumens": 3, 
 
 * [AsyncAPI home](https://www.asyncapi.com/)
 * [Async API GitHub](https://github.com/asyncapi)
-* [Async API Spec](https://github.com/asyncapi/spec)
+* [Async API 2.6.0 Spec](https://www.asyncapi.com/docs/reference/specification/v2.6.0)
+* [Demystifying the Semantics of Publish and Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics)
