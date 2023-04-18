@@ -7,34 +7,60 @@ This repository contains information, references, and samples about AsyncAPI.
 ## AsyncAPI: Why? What?
 
 [AsyncAPI](https://www.asyncapi.com/) is an open source initiative with the goal
-of making event-driven APIs as easy as REST APIs. It has a specification that
-allows developers, architects, and product managers to define the interfaces of
-an async API, similar to what OpenAPI (aka Swagger) does for REST APIs.
+of making event-driven APIs as easy as REST APIs. Fundamentally, it is a
+**specification** to define an asynchronous APIs, similar to what OpenAPI (aka
+Swagger) does for REST APIs.
+
+AsyncAPI also provides tools to visualize and validate AsyncAPI specs and
+generators to generate code from the spec in various languages and frameworks.
+
+## Specs and schemas
+
+Specs:
+
+* [2.6.0](https://www.asyncapi.com/docs/reference/specification/v2.6.0): The
+  latest official spec.
+* [3.0.0](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.10):
+  The pre-release spec.
+
+Schemas:
+
+Async documents can be validated with the [AsyncAPI JSON Schema definitions](https://github.com/asyncapi/spec-json-schemas/tree/master/schemas).
 
 ## Concepts
 
 These are the main concepts in AsyncAPI:
 
-* **Broker / Server**: An infrastructure that receives messages and delivers them
+* **Server (Broker)**: An infrastructure that receives messages and delivers them
 to those interested. They often store messages until delivered. Example brokers
 are RabbitMQ, Apache Kafka, Solace, etc.
 
-* **Publisher / Producer**: An application that send messages to the broker.
+* **Protocol**: How information is exchanged between applications and channels
+  such as *WebSockets*, *HTTP*, *Kafka*, *MQTT*, *Google Pub/Sub* and more.
 
-* **Subscriber / Consumer**: An application that listens for particular events
-from a broker.
+* **Channel**: An addressable component created by the server to organize
+  transmission of messages between producers and consumers. Channels can be
+  defined as a *topic*, *queue*, *routing key*, *path*, or *subject* depending
+  on the protocol used.
 
-* **Channel**: Created by the server to organize transmission of messages. Users
-can define channels as a *topic*, *queue*, *routing key*, *path*, or *subject*
-depending on the protocol used.
+* **Application**: A producer or a consumer that support the selected protocol
+  to exchange messages with the server.
 
-* **Protocol**: A set of rules that specifies how information is exchanged between
-applications and servers such as *WebSockets*, *HTTP*, *Kafka*, *MQTT*.
+* **Producer (Publisher)**: An application that send messages to a channel.
 
-* **Message**: A message is a piece of information that is sent by publishers to
-the broker, and received by all interested subscribers through a channel. Can
-also be defined as an *event* (to communicate that a fact has occured) or
-*command* (to instruct subscriber to do something).
+* **Consumer (Subscriber)**: An application that consumers for messages from a
+  channel.
+
+* **Message**: A message is the mechanism to exchange information between
+  servers and applications via a channel serialized in the format specified by
+  the protocol. It can support multiple patters such as *event* (to communicate
+  that a fact has occurred), *command* (to instruct subscriber to do something),
+  request or response.
+
+* **Bindings**: Server, channel, operation, and messaging bindings allow
+  protocol-specific information, e.g. `Google Cloud Pub/Sub Server Binding`,
+  `Google Cloud Pub/Sub Channel Binding`, `Google Cloud Pub/Sub Operation
+  Binding`, `Google Cloud Pub/Sub Message Binding`.
 
 ## OpenAPI vs. AsyncAPI
 
@@ -44,10 +70,12 @@ for a comparison between OpenAPI and AsyncAPI.
 
 ## How does an Async spec look like?
 
-An application that has a single channel called `hello` and capable of receiving
-messages that match "hello {name}":
+This is the simplest AsyncAPI possible. It's an application that has a single
+`hello` channel. Users can publish messages to this channel and the message
+payload is simply a string.
 
 ```yaml
+# The simplest AsyncAPI spec possible
 asyncapi: 2.6.0
 info:
   title: Hello world application
@@ -58,14 +86,15 @@ channels:
       message:
         payload:
           type: string
-          pattern: '^hello .+$'
 ```
 
-Another example with a server and multiple channels: [hello-world.yaml](hello-world.yaml).
+You can see more samples in [samples](./samples/) folder. AsyncAPI spec also has
+samples in
+[spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
 
 ## Publish vs. Subscribe in AsyncAPI
 
-In a channel, you can have `publish` and `subscribe` semantics. This can be
+In a channel, you can have `publish` and `subscribe` operations. This can be
 confusing, depending on which perspective you're considering (server vs. user)
 and what you're comparing against (eg. WebSocket).
 
