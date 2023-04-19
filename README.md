@@ -124,29 +124,30 @@ from [asyncapi/spec/examples](https://github.com/asyncapi/spec/tree/master/examp
 ```sh
 > asyncapi new
 
-? name of the file? asyncapi.yaml
-? would you like to start your new file from one of our examples? Yes
+? name of the file? asyncapi new -n streetlights.yaml
+? would you like to start your new file from one of our examples? Y
 ? What example would you like to use? Streetlights API Simplified - (protocols:
 mqtt)
-? open in Studio? No
-Created file asyncapi.yaml...
+? open in Studio? n
+Created file streetlights.yaml...
 ```
 
 Validate the AsyncAPI file:
 
 ```sh
-asyncapi validate asyncapi.yaml
+asyncapi validate streetlights.yaml
 ```
 
 Generate code from the AsyncAPI file:
 
 ```sh
-asyncapi generate fromTemplate asyncapi.yaml @asyncapi/nodejs-template -o output -p server=mosquitto
+asyncapi generate fromTemplate streetlights.yaml @asyncapi/nodejs-template -o streetlights -p server=mosquitto
 ```
 
 Start generated application:
 
 ```sh
+cd streetlights
 npm install
 npm start
 ```
@@ -161,6 +162,8 @@ mqtt pub -t 'light/measured' -h 'test.mosquitto.org' -m '{"id": 1, "lumens": 3, 
 ## References
 
 * [AsyncAPI home](https://www.asyncapi.com/)
-* [Async API GitHub](https://github.com/asyncapi)
-* [Async API 2.6.0 Spec](https://www.asyncapi.com/docs/reference/specification/v2.6.0)
+* [AsyncAPI GitHub](https://github.com/asyncapi)
+* [AsyncAPI Spec](https://www.asyncapi.com/docs/reference)
+* [AsyncAPI Spec Examples](https://github.com/asyncapi/spec/tree/master/examples)
 * [Demystifying the Semantics of Publish and Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics)
+* [Understanding AsyncAPIs with a Practical Example](https://medium.com/event-driven-utopia/understanding-asyncapis-with-a-practical-example-ee2b4be221d8)

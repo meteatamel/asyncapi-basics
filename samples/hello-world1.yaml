@@ -1,4 +1,4 @@
-# The simplest AsyncAPI spec possible
+# The simplest AsyncAPI definition possible
 asyncapi: 2.6.0
 info:
   title: Hello world application

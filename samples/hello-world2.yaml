@@ -1,3 +1,5 @@
+# Slightly more complicated AsyncAPI with servers, channels, components,
+# and schemas
 asyncapi: 2.6.0
 info:
   title: Hello world application
