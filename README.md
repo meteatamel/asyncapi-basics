@@ -88,10 +88,6 @@ channels:
           type: string
 ```
 
-You can see more samples in [samples](./samples/) folder. AsyncAPI spec also has
-samples in
-[spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
-
 ## Publish vs. Subscribe in AsyncAPI
 
 In a channel, you can have `publish` and `subscribe` operations. This can be
@@ -115,6 +111,13 @@ details.
   AsyncAPI files.
 * [AsyncAPI Generator](https://github.com/asyncapi/generator): A number of code
   generators for various languages and frameworks.
+
+## Samples
+
+Some samples to show how to use AsyncAPI in [samples](./samples/) folder.
+AsyncAPI spec also has samples in [spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
+
+* [hello-asyncapi](samples/hello-asyncapi) - HelloWorld samples for AsyncAPI.
 
 ## Quickstart
 
