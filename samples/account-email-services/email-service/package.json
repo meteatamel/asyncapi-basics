@@ -1,0 +1,19 @@
+{
+  "name": "email-service",
+  "description": "Receives user signed up event and sends out an email",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/api/index.js"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "dotenv": "8.1.0",
+    "hermesjs": "2.x",
+    "hermesjs-router": "1.x",
+    "asyncapi-validator": "3.0.0",
+    "hermesjs-mqtt": "2.x",
+    
+    "node-fetch": "2.6.0",
+    "node-yaml-config": "0.0.4"
+  }
+}

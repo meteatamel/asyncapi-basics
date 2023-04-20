@@ -1,0 +1,21 @@
+default:
+  app:
+    name: Email Service
+    version: 1.0.0
+
+  broker:
+    mqtt:
+      url: mqtt://test.mosquitto.org
+      topics: ["user/signedup"]
+      qos:
+      protocol: mqtt
+      retain:
+      subscribe: true
+
+development:
+
+test:
+
+staging:
+
+production:

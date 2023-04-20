@@ -1,0 +1,21 @@
+default:
+  app:
+    name: Account Service
+    version: 1.0.0
+
+  broker:
+    mqtt:
+      url: mqtt://test.mosquitto.org
+      topics: []
+      qos:
+      protocol: mqtt
+      retain:
+      subscribe: true
+
+development:
+
+test:
+
+staging:
+
+production:
