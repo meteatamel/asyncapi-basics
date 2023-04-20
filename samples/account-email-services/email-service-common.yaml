@@ -1,0 +1,17 @@
+# Same as email-service.yaml except it uses common.yaml to share common config
+# between account-service.yaml
+asyncapi: '2.6.0'
+info:
+  title: Email Service
+  version: 1.0.0
+  description: Receives user signed up event and sends out an email
+
+servers:
+  $ref: 'https://raw.githubusercontent.com/meteatamel/asyncapi-basics/main/samples/account-email-services/common.yaml#/servers'
+
+channels:
+  user/signedup:
+    publish:
+      operationId: receiveUserSignedUp
+      message:
+        $ref: 'https://raw.githubusercontent.com/meteatamel/asyncapi-basics/main/samples/account-email-services/common.yaml#/components/messages/userSignedUp'
