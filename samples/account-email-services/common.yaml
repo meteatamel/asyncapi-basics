@@ -1,0 +1,28 @@
+# Common AsyncAPI config shared between Account and Email Services
+servers:
+  test:
+    url: mqtt://test.mosquitto.org
+    protocol: mqtt
+    description: Test MQTT broker
+
+components:
+  messages:
+    userSignedUp:
+      name: userSignedUp
+      title: User signed up message
+      summary: Emitted when a user signs up
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/userSignedUpPayload'
+
+  schemas:
+    userSignedUpPayload:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: Name of the user
+        email:
+          type: string
+          format: email
+          description: Email of the user
