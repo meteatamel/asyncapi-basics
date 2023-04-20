@@ -48,6 +48,12 @@ channels:
       ...
 ```
 
+Note: Since most of [account-service.yaml](./account-service.yaml) and
+[email-service.yaml](./email-service.yaml) are the same, you can instead created
+a [common.yaml](./common.yaml) to encapsulate the common config and simply refer
+to hem from [account-service-common.yaml](./account-service-common.yaml) and
+[email-service-common.yaml](./email-service-common.yaml).
+
 ## Validate AsyncAPI specs
 
 Validate AsyncAPI file:
