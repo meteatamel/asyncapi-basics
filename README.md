@@ -118,49 +118,8 @@ Some samples to show how to use AsyncAPI in [samples](./samples/) folder.
 AsyncAPI spec also has samples in [spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
 
 * [hello-asyncapi](samples/hello-asyncapi) - HelloWorld samples for AsyncAPI.
-
-## Quickstart
-
-Generate an AsyncAPI file using the AsyncAPI CLI tool that can pull in samples
-from [asyncapi/spec/examples](https://github.com/asyncapi/spec/tree/master/examples).
-
-```sh
-> asyncapi new
-
-? name of the file? asyncapi new -n streetlights.yaml
-? would you like to start your new file from one of our examples? Y
-? What example would you like to use? Streetlights API Simplified - (protocols:
-mqtt)
-? open in Studio? n
-Created file streetlights.yaml...
-```
-
-Validate the AsyncAPI file:
-
-```sh
-asyncapi validate streetlights.yaml
-```
-
-Generate code from the AsyncAPI file:
-
-```sh
-asyncapi generate fromTemplate streetlights.yaml @asyncapi/nodejs-template -o streetlights -p server=mosquitto
-```
-
-Start generated application:
-
-```sh
-cd streetlights
-npm install
-npm start
-```
-
-In a separate terminal, send message to the generated application:
-
-```sh
-npm install mqtt -g
-mqtt pub -t 'light/measured' -h 'test.mosquitto.org' -m '{"id": 1, "lumens": 3, "sentAt": "2017-06-07T12:34:32.000Z"}'
-```
+* [quickstart](samples/quickstart) - A sample that shows how to generate an
+  AsyncAPI spec, validate it and generate code from it using AsyncAPI tools.
 
 ## References
 
