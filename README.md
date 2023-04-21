@@ -122,6 +122,9 @@ AsyncAPI spec also has samples in [spec/examples](https://github.com/asyncapi/sp
   AsyncAPI spec, validate it and generate code from it using AsyncAPI tools.
 * [account-email-services](samples/account-email-services/) - This sample shows
   how to author an AsyncAPI spec for a simple 2 microservices architecture.
+* [account-service-cloudevent](samples/account-service-cloudevents/) - This
+  sample shows AsyncAPI specs for a service that accepts CloudEvents in binary
+  and structured formats.
 
 ## References
 
@@ -131,3 +134,5 @@ AsyncAPI spec also has samples in [spec/examples](https://github.com/asyncapi/sp
 * [AsyncAPI Spec Examples](https://github.com/asyncapi/spec/tree/master/examples)
 * [Demystifying the Semantics of Publish and Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics)
 * [Understanding AsyncAPIs with a Practical Example](https://medium.com/event-driven-utopia/understanding-asyncapis-with-a-practical-example-ee2b4be221d8)
+* [Simulating CloudEvents with AsyncAPI and
+  Microcks](https://developers.redhat.com/articles/2021/06/02/simulating-cloudevents-asyncapi-and-microcks#)

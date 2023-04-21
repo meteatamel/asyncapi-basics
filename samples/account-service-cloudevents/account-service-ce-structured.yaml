@@ -1,0 +1,46 @@
+# Account Service in CloudEvents structured format based on this blog post:
+# https://developers.redhat.com/articles/2021/06/02/simulating-cloudevents-asyncapi-and-microcks#
+asyncapi: '2.6.0'
+info:
+  title: Account Service CloudEvents - structured
+  version: 1.0.0
+  description: Processes user sign ups and publishes an event afterwards
+
+channels:
+  user/signedup:
+    subscribe:
+      message:
+        $ref: '#/components/messages/userSignedUp'
+
+components:
+  messages:
+    userSignedUp:
+      name: userSignedUp
+      title: User signed up message
+      summary: Emitted when a user signs up
+      headers:
+        content-type:
+          type: string
+          enum:
+            - 'application/cloudevents+json; charset=UTF-8'
+      payload:
+        $ref: '#/components/schemas/userSignedUpPayload'
+
+  schemas:
+    userSignedUpPayload:
+      type: object
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/cloudevents/spec/v1.0.1/spec.json'
+      properties:
+        data:
+          $ref: '#/components/schemas/userSignedUpData'
+    userSignedUpData:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: Name of the user
+        email:
+          type: string
+          format: email
+          description: Email of the user
