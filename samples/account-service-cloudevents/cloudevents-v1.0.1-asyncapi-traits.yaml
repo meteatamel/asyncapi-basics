@@ -1,7 +1,7 @@
 # Modified from this sample"
 # https://raw.githubusercontent.com/microcks/microcks-quickstarters/main/cloud/cloudevents/cloudevents-v1.0.1-asyncapi-trait.yml
 name: cloudevents-headers
-summary: Message headers used by CloudEvents spec in binary content mode Kafka binding (see https://github.com/cloudevents/spec/blob/v1.0.1/kafka-protocol-binding.md)
+summary: Message headers used by CloudEvents spec in binary content mode
 headers:
   type: object
   required:
