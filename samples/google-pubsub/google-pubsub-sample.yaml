@@ -1,0 +1,164 @@
+asyncapi: 2.6.0
+info:
+    title: Google Cloud Pub/Sub Topology
+    description: AsyncAPI definition for Google Cloud Pub/Sub
+    version: 0.0.1
+servers:
+    pubsubGRPC:
+        url: pubsub.googleapis.com
+        description: The gRPC API for Cloud Pub/Sub
+        protocol: grpc
+    pubsubHTTP:
+        url: pubsub.googleapis.com
+        description: The HTTP API for Cloud Pub/Sub
+        protocol: https
+channels:
+    projects/your-project-id/topics/topic-with-avro-schema:
+        bindings:
+            googlepubsub:
+                messageStoragePolicy:
+                    allowedPersistenceRegions:
+                        - asia-east1
+                        - asia-northeast1
+                        - asia-southeast1
+                        - australia-southeast1
+                        - europe-north1
+                        - europe-west1
+                        - europe-west2
+                        - europe-west3
+                        - europe-west4
+                        - southamerica-west1
+                        - us-central1
+                        - us-central2
+                        - us-east1
+                        - us-east4
+                        - us-east5
+                        - us-east7
+                        - us-south1
+                        - us-west1
+                        - us-west2
+                        - us-west3
+                        - us-west4
+                schemaSettings:
+                    encoding: avro
+                    name: projects/your-project-id/schemas/message-avro
+        publish:
+            message:
+                $ref: '#/components/messages/messageAvroAsJSON'
+        subscribe:
+            message:
+                $ref: '#/components/messages/messageAvroAsJSON'
+    projects/your-project-id/topics/topic-with-proto-schema:
+        bindings:
+            googlepubsub:
+                messageStoragePolicy:
+                    allowedPersistenceRegions:
+                        - asia-east1
+                        - asia-northeast1
+                        - asia-southeast1
+                        - australia-southeast1
+                        - europe-north1
+                        - europe-west1
+                        - europe-west2
+                        - europe-west3
+                        - europe-west4
+                        - southamerica-west1
+                        - us-central1
+                        - us-central2
+                        - us-east1
+                        - us-east4
+                        - us-east5
+                        - us-east7
+                        - us-south1
+                        - us-west1
+                        - us-west2
+                        - us-west3
+                        - us-west4
+                schemaSettings:
+                    encoding: protobuf
+                    name: projects/your-project-id/schemas/message-proto
+        publish:
+            message:
+                $ref: '#/components/messages/messageProto'
+        subscribe:
+            message:
+                $ref: '#/components/messages/messageProto'
+    projects/your-project-id/topics/topic-with-no-schema:
+        bindings:
+            googlepubsub:
+                messageStoragePolicy:
+                    allowedPersistenceRegions:
+                        - asia-east1
+                        - asia-northeast1
+                        - asia-southeast1
+                        - australia-southeast1
+                        - europe-north1
+                        - europe-west1
+                        - europe-west2
+                        - europe-west3
+                        - europe-west4
+                        - southamerica-west1
+                        - us-central1
+                        - us-central2
+                        - us-east1
+                        - us-east4
+                        - us-east5
+                        - us-east7
+                        - us-south1
+                        - us-west1
+                        - us-west2
+                        - us-west3
+                        - us-west4
+        publish:
+            message:
+                $ref: '#/components/messages/noSchema'
+        subscribe:
+            message:
+                $ref: '#/components/messages/noSchema'
+components:
+    messages:
+        messageAvroAsJSON:
+            bindings:
+                googlepubsub:
+                    schema:
+                        definition: |
+                            {
+                              "type" : "record",
+                              "name" : "Message",
+                              "fields" : [
+                                {
+                                  "name" : "message",
+                                  "type" : "string"
+                                }
+                              ]
+                            }
+                        name: projects/your-project-id/schemas/message-avro
+                        type: avro
+            contentType: application/json
+            name: projects/your-project-id/schemas/message-avro
+            payload:
+                fields:
+                    - name: message
+                      type: string
+                name: Message
+                type: record
+            schemaFormat: application/vnd.apache.avro+yaml;version=1.9.0
+        messageProto:
+            bindings:
+                googlepubsub:
+                    schema:
+                        definition: |
+                            syntax = "proto2";
+
+                            message Message {
+                              required string message = 1;
+                            }
+                        name: projects/your-project-id/schemas/message-proto
+                        type: protobuf
+            contentType: application/octet-stream
+            name: projects/your-project-id/schemas/message-proto
+            payload: true
+        noSchema:
+            contentType: application/octet-stream
+            description: A message having no schema
+            payload: true
