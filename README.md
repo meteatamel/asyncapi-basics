@@ -118,13 +118,15 @@ Some samples to show how to use AsyncAPI in [samples](./samples/) folder.
 AsyncAPI spec also has samples in [spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
 
 * [hello-asyncapi](samples/hello-asyncapi) - HelloWorld samples for AsyncAPI.
-* [quickstart](samples/quickstart) - A sample that shows how to generate an
-  AsyncAPI spec, validate it and generate code from it using AsyncAPI tools.
-* [account-email-services](samples/account-email-services/) - This sample shows
-  how to author an AsyncAPI spec for a simple 2 microservices architecture.
-* [account-service-cloudevent](samples/account-service-cloudevents/) - This
-  sample shows AsyncAPI specs for a service that accepts CloudEvents in binary
-  and structured formats.
+* [quickstart](samples/quickstart) - Shows how to generate an AsyncAPI spec,
+  validate it and generate code from it using AsyncAPI tools.
+* [account-email-services](samples/account-email-services/) - Show how to author
+  an AsyncAPI spec for a simple 2 microservices architecture.
+* [account-service-cloudevent](samples/account-service-cloudevents/) - Shows
+  AsyncAPI specs for a service that accepts CloudEvents in binary and structured
+  formats.
+* [google-pubsub](samples/google-pubsub/) - Shows AsyncAPI spec for Google Cloud
+  Pub/Sub.
 
 ## References
 
