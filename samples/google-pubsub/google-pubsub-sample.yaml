@@ -1,3 +1,6 @@
+# An AsyncAPI definition for Google Cloud Pub/Sub
+# Google Cloud Pub/Sub Bindings docs:
+# https://github.com/asyncapi/bindings/tree/master/googlepubsub
 asyncapi: 2.6.0
 info:
     title: Google Cloud Pub/Sub Topology
@@ -13,129 +16,66 @@ servers:
         description: The HTTP API for Cloud Pub/Sub
         protocol: https
 channels:
-    projects/your-project-id/topics/topic-with-avro-schema:
+    topic-avro-schema:
         bindings:
             googlepubsub:
-                messageStoragePolicy:
-                    allowedPersistenceRegions:
-                        - asia-east1
-                        - asia-northeast1
-                        - asia-southeast1
-                        - australia-southeast1
-                        - europe-north1
-                        - europe-west1
-                        - europe-west2
-                        - europe-west3
-                        - europe-west4
-                        - southamerica-west1
-                        - us-central1
-                        - us-central2
-                        - us-east1
-                        - us-east4
-                        - us-east5
-                        - us-east7
-                        - us-south1
-                        - us-west1
-                        - us-west2
-                        - us-west3
-                        - us-west4
+                topic: projects/your-project/topics/topic-avro-schema
                 schemaSettings:
-                    encoding: avro
-                    name: projects/your-project-id/schemas/message-avro
+                    encoding: json
+                    name: projects/your-project/schemas/message-avro
         publish:
             message:
-                $ref: '#/components/messages/messageAvroAsJSON'
+                $ref: '#/components/messages/messageAvro'
         subscribe:
             message:
-                $ref: '#/components/messages/messageAvroAsJSON'
-    projects/your-project-id/topics/topic-with-proto-schema:
+                $ref: '#/components/messages/messageAvro'
+    topic-proto-schema:
         bindings:
             googlepubsub:
+                topic: projects/your-project/topics/topic-proto-schema
+                messageRetentionDuration: 86400s
                 messageStoragePolicy:
-                    allowedPersistenceRegions:
-                        - asia-east1
-                        - asia-northeast1
-                        - asia-southeast1
-                        - australia-southeast1
-                        - europe-north1
-                        - europe-west1
-                        - europe-west2
-                        - europe-west3
-                        - europe-west4
-                        - southamerica-west1
-                        - us-central1
-                        - us-central2
-                        - us-east1
-                        - us-east4
-                        - us-east5
-                        - us-east7
-                        - us-south1
-                        - us-west1
-                        - us-west2
-                        - us-west3
-                        - us-west4
+                allowedPersistenceRegions:
+                - us-central1
+                - us-central2
+                - us-east1
+                - us-east4
+                - us-east5
+                - us-east7
+                - us-south1
+                - us-west1
+                - us-west2
+                - us-west3
+                - us-west4
                 schemaSettings:
-                    encoding: protobuf
-                    name: projects/your-project-id/schemas/message-proto
+                    encoding: binary
+                    name: projects/your-project/schemas/message-proto
         publish:
             message:
                 $ref: '#/components/messages/messageProto'
         subscribe:
             message:
                 $ref: '#/components/messages/messageProto'
-    projects/your-project-id/topics/topic-with-no-schema:
+    topic-no-schema:
         bindings:
             googlepubsub:
-                messageStoragePolicy:
-                    allowedPersistenceRegions:
-                        - asia-east1
-                        - asia-northeast1
-                        - asia-southeast1
-                        - australia-southeast1
-                        - europe-north1
-                        - europe-west1
-                        - europe-west2
-                        - europe-west3
-                        - europe-west4
-                        - southamerica-west1
-                        - us-central1
-                        - us-central2
-                        - us-east1
-                        - us-east4
-                        - us-east5
-                        - us-east7
-                        - us-south1
-                        - us-west1
-                        - us-west2
-                        - us-west3
-                        - us-west4
+                topic: projects/your-project/topics/topic-no-schema
         publish:
             message:
-                $ref: '#/components/messages/noSchema'
+                $ref: '#/components/messages/messageNoSchema'
         subscribe:
             message:
-                $ref: '#/components/messages/noSchema'
+                $ref: '#/components/messages/messageNoSchema'
 components:
     messages:
-        messageAvroAsJSON:
+        messageAvro:
             bindings:
                 googlepubsub:
                     schema:
-                        definition: |
-                            {
-                              "type" : "record",
-                              "name" : "Message",
-                              "fields" : [
-                                {
-                                  "name" : "message",
-                                  "type" : "string"
-                                }
-                              ]
-                            }
-                        name: projects/your-project-id/schemas/message-avro
+                        name: projects/your-project/schemas/message-avro
                         type: avro
             contentType: application/json
-            name: projects/your-project-id/schemas/message-avro
+            name: MessageAvro
             payload:
                 fields:
                     - name: message
@@ -147,18 +87,14 @@ components:
             bindings:
                 googlepubsub:
                     schema:
-                        definition: |
-                            syntax = "proto2";
-
-                            message Message {
-                              required string message = 1;
-                            }
-                        name: projects/your-project-id/schemas/message-proto
+                        name: projects/your-project/schemas/message-proto
                         type: protobuf
             contentType: application/octet-stream
-            name: projects/your-project-id/schemas/message-proto
+            name: MessageProto
+            # Proto is currently not supported in AsyncAPI, we're simply
+            # indicating that there's a payload here.
             payload: true
-        noSchema:
+        messageNoSchema:
             contentType: application/octet-stream
             description: A message having no schema
             payload: true
