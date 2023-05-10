@@ -11,21 +11,25 @@ of making event-driven APIs as easy as REST APIs. Fundamentally, it is a
 **specification** to define an asynchronous APIs, similar to what OpenAPI (aka
 Swagger) does for REST APIs.
 
-AsyncAPI also provides tools to visualize and validate AsyncAPI specs and
-generators to generate code from the spec in various languages and frameworks.
+AsyncAPI also provides **tools to visualize and validate** AsyncAPI specs and
+**generators** to generate code from the spec in various languages and frameworks.
 
 ## Specs and schemas
 
-Specs:
+You can see all the previous and current [specs of
+AsyncAPI](https://www.asyncapi.com/docs/reference). Specs for the latest and
+pre-release versions:
 
-* [2.6.0](https://www.asyncapi.com/docs/reference/specification/v2.6.0): The
+* [2.6.0 Spec](https://www.asyncapi.com/docs/reference/specification/v2.6.0): The
   latest official spec.
-* [3.0.0](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.10):
-  The pre-release spec.
+* [3.0.0 Spec](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.10):
+  The in-progress pre-release spec.
 
-Schemas:
+You can also validate the AsyncAPI documents with the [AsyncAPI JSON Schema
+definitions](https://github.com/asyncapi/spec-json-schemas/tree/master/schemas).
+Schema for the latest version:
 
-Async documents can be validated with the [AsyncAPI JSON Schema definitions](https://github.com/asyncapi/spec-json-schemas/tree/master/schemas).
+* [2.6.0 Schema](https://github.com/asyncapi/spec-json-schemas/blob/master/schemas/2.6.0.json).
 
 ## Concepts
 
@@ -64,9 +68,12 @@ are RabbitMQ, Apache Kafka, Solace, etc.
 
 ## OpenAPI vs. AsyncAPI
 
-You can see the [following
+If you're coming from OpenAPI and you want to see how it compares to AsyncAPI,
+here's a [nice
 diagram](https://www.asyncapi.com/docs/tutorials/getting-started/coming-from-openapi)
-for a comparison between OpenAPI and AsyncAPI.
+from the AsyncAPI docs.
+
+![OpenAPI vs. AsyncAPI](./openapivsasyncapi.png)
 
 ## How does an Async spec look like?
 
