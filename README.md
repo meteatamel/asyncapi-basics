@@ -75,7 +75,7 @@ from the AsyncAPI docs.
 
 ![OpenAPI vs. AsyncAPI](./images/openapivsasyncapi.png)
 
-## How does an Async spec look like?
+## How does an AsyncAPI spec look like?
 
 [hello-world1.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world1.yaml)
 is the simplest AsyncAPI possible. It's an application that has a single `hello`
@@ -100,6 +100,21 @@ channels:
 is a more complicated AsyncAPI definition with servers, channels, components and
 schemas.
 
+## Publish vs. Subscribe semantics in AsyncAPI
+
+In a channel, you can have `publish` and `subscribe` operations. This can be
+confusing, depending on which perspective you're considering (server vs. user)
+and what you're comparing against (eg. WebSocket).
+
+| AsyncAPI Term | WebSocket Term | From Server Perspective | From User Perspective |
+| --- | --- | --- | --- |
+| Publish | Send | The server receives the message | The user publishes/sends the message to the server |
+| Subscribe | Receive | The server publishes the message | The user subscribes/receives the message from the server |
+
+It's most useful to think of `publish` and `subscribe` from user's perspective. You can read [Demystifying the Semantics of Publish and
+Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics) for more
+details.
+
 ## Tools
 
 These are some of the useful tools for AsyncAPI:
@@ -121,7 +136,7 @@ files. Here's the previous sample visualized in AsyncStudio:
 AsyncAPI has some basic samples in
 [spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
 
-More samples in this repo in [samples](./samples/) folder.
+More samples in this repo in [samples](./samples/) folder:
 
 * [hello-asyncapi](samples/hello-asyncapi) - HelloWorld samples for AsyncAPI.
 * [quickstart](samples/quickstart) - Shows how to generate an AsyncAPI spec,
@@ -133,21 +148,6 @@ More samples in this repo in [samples](./samples/) folder.
   formats.
 * [google-pubsub](samples/google-pubsub/) - Shows AsyncAPI spec for Google Cloud
   Pub/Sub.
-
-## Publish vs. Subscribe semantics in AsyncAPI
-
-In a channel, you can have `publish` and `subscribe` operations. This can be
-confusing, depending on which perspective you're considering (server vs. user)
-and what you're comparing against (eg. WebSocket).
-
-| AsyncAPI Term | WebSocket Term | From Server Perspective | From User Perspective |
-| --- | --- | --- | --- |
-| Publish | Send | The server receives the message | The user publishes/sends the message to the server |
-| Subscribe | Receive | The server publishes the message | The user subscribes/receives the message from the server |
-
-It's most useful to think of `publish` and `subscribe` from user's perspective. You can read [Demystifying the Semantics of Publish and
-Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics) for more
-details.
 
 ## References
 

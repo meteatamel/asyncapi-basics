@@ -4,15 +4,21 @@ asyncapi: 2.6.0
 info:
   title: Hello world application
   version: 0.1.0
+# You can have multiple servers for production, staging, test, etc.
 servers:
   production:
     url: broker.mycompany.com
     protocol: amqp
     description: This is "My Company" broker.
+# Each channel is part of a server. If a channel does not specify a server, 
+# it's available on all servers.
 channels:
   hello:
+    # Publish means a user can publish messages to a channel
+    # Another option is subscribe
     publish:
       message:
+        # Message schema can be referenced
         $ref: '#/components/messages/hello-msg'
   goodbye:
     publish:
@@ -21,6 +27,7 @@ channels:
 components:
   messages:
     hello-msg:
+      # Message payload can be inlined for referenced
       payload:
         type: object
         properties:
@@ -35,6 +42,7 @@ components:
           sentAt:
             $ref: '#/components/schemas/sent-at'
   schemas:
+    # Schemas can be shared across payloads
     sent-at:
       type: string
       description: The date and time a message was sent.
