@@ -73,13 +73,14 @@ here's a [nice
 diagram](https://www.asyncapi.com/docs/tutorials/getting-started/coming-from-openapi)
 from the AsyncAPI docs.
 
-![OpenAPI vs. AsyncAPI](./openapivsasyncapi.png)
+![OpenAPI vs. AsyncAPI](./images/openapivsasyncapi.png)
 
 ## How does an Async spec look like?
 
-This is the simplest AsyncAPI possible. It's an application that has a single
-`hello` channel. Users can publish messages to this channel and the message
-payload is simply a string.
+[hello-world1.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world1.yaml)
+is the simplest AsyncAPI possible. It's an application that has a single `hello`
+channel. Users can publish messages to this channel and the message payload is
+simply a string.
 
 ```yaml
 # The simplest AsyncAPI spec possible
@@ -95,7 +96,45 @@ channels:
           type: string
 ```
 
-## Publish vs. Subscribe in AsyncAPI
+[hello-world2.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world2.yaml)
+is a more complicated AsyncAPI definition with servers, channels, components and
+schemas.
+
+## Tools
+
+These are some of the useful tools for AsyncAPI:
+
+* [AsyncStudio](https://studio.asyncapi.com/): Browser based tool to author and
+  visualize and validate AsyncAPI files.
+* [AsyncAPI CLI](https://github.com/asyncapi/cli): CLI based tool to work with
+  AsyncAPI files.
+* [AsyncAPI Generator](https://github.com/asyncapi/generator): A number of code
+  generators for various languages and frameworks.
+
+AsyncStudio is especially useful tool to author, visualize and validate AsyncAPI
+files. Here's the previous sample visualized in AsyncStudio:
+
+![AsyncStudio](./images/asyncstudio.png)
+
+## Samples
+
+AsyncAPI has some basic samples in
+[spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
+
+More samples in this repo in [samples](./samples/) folder.
+
+* [hello-asyncapi](samples/hello-asyncapi) - HelloWorld samples for AsyncAPI.
+* [quickstart](samples/quickstart) - Shows how to generate an AsyncAPI spec,
+  validate it and generate code from it using AsyncAPI tools.
+* [account-email-services](samples/account-email-services/) - Show how to author
+  an AsyncAPI spec for a simple 2 microservices architecture.
+* [account-service-cloudevent](samples/account-service-cloudevents/) - Shows
+  AsyncAPI specs for a service that accepts CloudEvents in binary and structured
+  formats.
+* [google-pubsub](samples/google-pubsub/) - Shows AsyncAPI spec for Google Cloud
+  Pub/Sub.
+
+## Publish vs. Subscribe semantics in AsyncAPI
 
 In a channel, you can have `publish` and `subscribe` operations. This can be
 confusing, depending on which perspective you're considering (server vs. user)
@@ -110,32 +149,9 @@ It's most useful to think of `publish` and `subscribe` from user's perspective. 
 Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics) for more
 details.
 
-## Tools
-
-* [AsyncStudio](https://studio.asyncapi.com/): Browser based tool to author and
-  visualize and validate AsyncAPI files.
-* [AsyncAPI CLI](https://github.com/asyncapi/cli): CLI based tool to work with
-  AsyncAPI files.
-* [AsyncAPI Generator](https://github.com/asyncapi/generator): A number of code
-  generators for various languages and frameworks.
-
-## Samples
-
-Some samples to show how to use AsyncAPI in [samples](./samples/) folder.
-AsyncAPI spec also has samples in [spec/examples](https://github.com/asyncapi/spec/tree/master/examples) folder.
-
-* [hello-asyncapi](samples/hello-asyncapi) - HelloWorld samples for AsyncAPI.
-* [quickstart](samples/quickstart) - Shows how to generate an AsyncAPI spec,
-  validate it and generate code from it using AsyncAPI tools.
-* [account-email-services](samples/account-email-services/) - Show how to author
-  an AsyncAPI spec for a simple 2 microservices architecture.
-* [account-service-cloudevent](samples/account-service-cloudevents/) - Shows
-  AsyncAPI specs for a service that accepts CloudEvents in binary and structured
-  formats.
-* [google-pubsub](samples/google-pubsub/) - Shows AsyncAPI spec for Google Cloud
-  Pub/Sub.
-
 ## References
+
+These are some references I found useful in my research:
 
 * [AsyncAPI home](https://www.asyncapi.com/)
 * [AsyncAPI GitHub](https://github.com/asyncapi)
