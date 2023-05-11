@@ -92,7 +92,7 @@ see it visually:
 
 ## Validate the AsyncAPI file
 
-You can se in AsyncStudio whether the AsyncAPI file is valid or not.
+You can see in AsyncStudio whether the AsyncAPI file is valid or not.
 
 You can also validate it using the `asyncapi` CLI:
 
