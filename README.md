@@ -35,33 +35,33 @@ Schema for the latest version:
 
 These are the main concepts in AsyncAPI:
 
-* **Server (Broker)**: An infrastructure that receives messages and delivers them
-to those interested. They often store messages until delivered. Example brokers
-are RabbitMQ, Apache Kafka, Solace, etc.
-
-* **Protocol**: How information is exchanged between applications and channels
-  such as *WebSockets*, *HTTP*, *Kafka*, *MQTT*, *Google Pub/Sub* and more.
+* **Server**: An infrastructure that receives messages and delivers them
+to those interested. They often store messages until delivered. Examples
+are Google Cloud, RabbitMQ, Apache Kafka, Solace, etc.
 
 * **Channel**: An addressable component created by the server to organize
   transmission of messages between producers and consumers. Channels can be
-  defined as a *topic*, *queue*, *routing key*, *path*, or *subject* depending
+  defined as a topic, queue, routing key, path, or subject depending
   on the protocol used.
+
+* **Protocol**: How information is exchanged between applications and channels
+  such as AMQP, HTTP, WebSocket, JMS, Kafka, MQTT etc.
 
 * **Application**: A producer or a consumer that support the selected protocol
   to exchange messages with the server.
 
-* **Producer (Publisher)**: An application that send messages to a channel.
+* **Producer (Publisher)**: An application that sends messages to a channel.
 
-* **Consumer (Subscriber)**: An application that consumers for messages from a
+* **Consumer (Subscriber)**: An application that consumes messages from a
   channel.
 
-* **Message**: A message is the mechanism to exchange information between
-  servers and applications via a channel serialized in the format specified by
-  the protocol. It can support multiple patters such as *event* (to communicate
-  that a fact has occurred), *command* (to instruct subscriber to do something),
+* **Message**: Mechanism to exchange information between servers and
+  applications via a channel serialized in the format specified by
+  the protocol. It can support multiple patters such as event (to communicate
+  that a fact has occurred), command (to instruct subscriber to do something),
   request or response.
 
-* **Bindings**: Server, channel, operation, and messaging bindings allow
+* **Binding**: Server, channel, operation, and messaging bindings allow
   protocol-specific information, e.g. `Google Cloud Pub/Sub Server Binding`,
   `Google Cloud Pub/Sub Channel Binding`, `Google Cloud Pub/Sub Operation
   Binding`, `Google Cloud Pub/Sub Message Binding`.
