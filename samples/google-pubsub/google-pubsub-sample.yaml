@@ -6,15 +6,22 @@ info:
     title: Google Cloud Pub/Sub Topology
     description: AsyncAPI definition for Google Cloud Pub/Sub
     version: 0.0.1
+
 servers:
-    pubsubGRPC:
-        url: pubsub.googleapis.com
-        description: The gRPC API for Cloud Pub/Sub
-        protocol: grpc
-    pubsubHTTP:
-        url: pubsub.googleapis.com
-        description: The HTTP API for Cloud Pub/Sub
-        protocol: https
+  cloudPubSub:
+    url: '{cloudPubSubEndpoint}.googleapis.com'
+    description: The API for Cloud Pub/Sub.
+    protocol: googlepubsub
+    variables:
+      cloudPubSubEndpoint:
+        description: The Cloud Pub/Sub endpoint region.
+        # Default to the global endpoint
+        default: pubsub
+        # Or, restrict to only the following region-specific endpoints.
+        # enum:
+        # - us-central1
+        # - us-central2
+
 channels:
     topic-avro-schema:
         bindings:
@@ -66,6 +73,7 @@ channels:
         subscribe:
             message:
                 $ref: '#/components/messages/messageNoSchema'
+
 components:
     messages:
         messageAvro:
