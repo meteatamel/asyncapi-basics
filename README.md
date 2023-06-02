@@ -35,6 +35,9 @@ Schema for the latest version:
 
 These are the main concepts in AsyncAPI:
 
+* **Application**: A producer or a consumer that support the selected protocol
+  to exchange messages with the server.
+ 
 * **Server**: An infrastructure that receives messages and delivers them
 to those interested. They often store messages until delivered. Examples
 are Google Cloud, RabbitMQ, Apache Kafka, Solace, etc.
@@ -46,9 +49,6 @@ are Google Cloud, RabbitMQ, Apache Kafka, Solace, etc.
 
 * **Protocol**: How information is exchanged between applications and channels
   such as AMQP, HTTP, WebSocket, JMS, Kafka, MQTT etc.
-
-* **Application**: A producer or a consumer that support the selected protocol
-  to exchange messages with the server.
 
 * **Producer (Publisher)**: An application that sends messages to a channel.
 
