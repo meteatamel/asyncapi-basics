@@ -97,3 +97,10 @@ You should see the email service receive the message:
 ← user/signedup was received:
 { displayName: 'Mete', email: 'info@atamel.com' }
 ```
+
+If you feel adventurous, you can try to generate more code for other languages,
+for example Java spring:
+
+```sh
+asyncapi generate fromTemplate email-service.yaml @asyncapi/java-spring-template -o email-service-spring
+```
