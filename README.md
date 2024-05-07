@@ -18,18 +18,27 @@ AsyncAPI also provides **tools to visualize and validate** AsyncAPI specs and
 
 You can see all the previous and current [specs of
 AsyncAPI](https://www.asyncapi.com/docs/reference). Specs for the latest and
-pre-release versions:
+the previous versions:
 
+* [3.0.0 Spec](https://www.asyncapi.com/docs/reference/specification/v3.0.0):
+  The latest official spec.
 * [2.6.0 Spec](https://www.asyncapi.com/docs/reference/specification/v2.6.0): The
-  latest official spec.
-* [3.0.0 Spec](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.10):
-  The in-progress pre-release spec.
+  previous official spec.
 
 You can also validate the AsyncAPI documents with the [AsyncAPI JSON Schema
 definitions](https://github.com/asyncapi/spec-json-schemas/tree/master/schemas).
-Schema for the latest version:
+Schemas:
 
+* [3.0.0 Schema](https://github.com/asyncapi/spec-json-schemas/blob/master/schemas/3.0.0.json).
 * [2.6.0 Schema](https://github.com/asyncapi/spec-json-schemas/blob/master/schemas/2.6.0.json).
+
+## AsyncAPI 2.6.0 vs 3.0.0
+
+3.0.0 was released in December 2023 with breaking changes. These pages provide
+more context and help on how to migrate from 2.6.0:
+
+* [AsyncAPI 3.0.0 Release Note](https://www.asyncapi.com/blog/release-notes-3.0.0)
+* [Migrating to v3](https://www.asyncapi.com/docs/migration/migrating-to-v3)
 
 ## Concepts
 
@@ -37,7 +46,7 @@ These are the main concepts in AsyncAPI:
 
 * **Application**: A producer or a consumer that support the selected protocol
   to exchange messages with the server.
- 
+
 * **Server**: An infrastructure that receives messages and delivers them
 to those interested. They often store messages until delivered. Examples
 are Google Cloud, RabbitMQ, Apache Kafka, Solace, etc.
@@ -77,13 +86,13 @@ from the AsyncAPI docs.
 
 ## How does an AsyncAPI spec look like?
 
-[hello-world1.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world1.yaml)
-is the simplest AsyncAPI possible. It's an application that has a single `hello`
+[hello-world1-2.6.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world1-2.6.yaml)
+is the simplest AsyncAPI possible in 2.6.0. It's an application that has a single `hello`
 channel. Users can publish messages to this channel and the message payload is
 simply a string.
 
 ```yaml
-# The simplest AsyncAPI spec possible
+# The simplest AsyncAPI definition possible in 2.6.0
 asyncapi: 2.6.0
 info:
   title: Hello world application
@@ -96,11 +105,40 @@ channels:
           type: string
 ```
 
-[hello-world2.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world2.yaml)
-is a more complicated AsyncAPI definition with servers, channels, components and
+[hello-world1-3.0.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world1-3.0.yaml)
+is the simplest AsyncAPI possible in 3.0.0. It's an application that has a single `hello`
+channel. Server **receive** messages to this channel and the message payload is
+simply a string.
+
+```yaml
+# The simplest AsyncAPI definition possible in 3.0.0
+asyncapi: 3.0.0
+info:
+  title: Hello world application
+  version: 0.1.0
+channels:
+  hello:
+    address: hello
+    messages:
+      publish.message:
+        payload:
+          type: string
+operations:
+  hello.publish:
+    action: receive
+    channel:
+      $ref: '#/channels/hello'
+    messages:
+      - $ref: '#/channels/hello/messages/publish.message'
+```
+
+[hello-world2-2.6.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world2-2.6.yaml)
+and
+[hello-world2-3.0.yaml](https://github.com/meteatamel/asyncapi-basics/blob/main/samples/hello-asyncapi/hello-world2-3.0.yaml)
+are more complicated AsyncAPI definitions with servers, channels, components and
 schemas.
 
-## Publish vs. Subscribe semantics in AsyncAPI
+## Publish vs. Subscribe semantics in AsyncAPI 2.6.0
 
 In a channel, you can have `publish` and `subscribe` operations. This can be
 confusing, depending on which perspective you're considering (server vs. user)
@@ -114,6 +152,11 @@ and what you're comparing against (eg. WebSocket).
 It's most useful to think of `publish` and `subscribe` from user's perspective. You can read [Demystifying the Semantics of Publish and
 Subscribe](https://www.asyncapi.com/blog/publish-subscribe-semantics) for more
 details.
+
+## Receive vs. Send semantics in AsyncAPI 3.0.0
+
+In AsyncAPI 3.0.0, you have `send` and `receive` operations instead and it
+refers to the server sending and receiving messages.
 
 ## Tools
 
@@ -161,3 +204,5 @@ These are some references I found useful in my research:
 * [Understanding AsyncAPIs with a Practical Example](https://medium.com/event-driven-utopia/understanding-asyncapis-with-a-practical-example-ee2b4be221d8)
 * [Simulating CloudEvents with AsyncAPI and
   Microcks](https://developers.redhat.com/articles/2021/06/02/simulating-cloudevents-asyncapi-and-microcks#)
+* [Migrating to v3](https://www.asyncapi.com/docs/migration/migrating-to-v3)
+* [AsyncAPI 3.0.0 Release Notes](https://www.asyncapi.com/blog/release-notes-3.0.0)
