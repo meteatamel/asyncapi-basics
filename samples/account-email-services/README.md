@@ -103,20 +103,15 @@ asyncapi validate email-service-3.0.yaml
 Generate code from the AsyncAPI spec:
 
 ```sh
-asyncapi generate fromTemplate email-service.yaml @asyncapi/nodejs-template -o email-service -p server=test
+asyncapi generate fromTemplate email-service-2.6.yaml @asyncapi/nodejs-template -o email-service-2.6 -p server=test
 ```
 
 Start the generated application:
 
 ```sh
-cd email-service
-npm install
-npm start
+node test-email-service-2.6.js
 
-> email-service@1.0.0 start
-> node src/api/index.js
-
- SUB  Subscribed to user/signedup
+SUB  Subscribed to user/signedup
 Email Service 1.0.0 is ready! 
 ```
 
