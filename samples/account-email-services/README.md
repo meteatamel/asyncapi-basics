@@ -132,5 +132,5 @@ If you feel adventurous, you can try to generate more code for other languages,
 for example Java spring:
 
 ```sh
-asyncapi generate fromTemplate email-service.yaml @asyncapi/java-spring-template -o email-service-spring
+asyncapi generate fromTemplate email-service-2.6.yaml @asyncapi/java-spring-template -o email-service-spring-2.6
 ```

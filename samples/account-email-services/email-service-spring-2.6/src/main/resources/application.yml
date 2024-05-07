@@ -1,0 +1,21 @@
+
+
+
+mqtt:
+  broker: 
+    # Test MQTT broker
+    address: mqtt://test.mosquitto.org
+    username:
+    password:
+    
+    clientId: default
+    
+    
+    
+    timeout:
+      completion: 30000
+      disconnection: 5000
+      connection: 30
+      
+  topic:
+    receiveUserSignedUp: user/signedup
