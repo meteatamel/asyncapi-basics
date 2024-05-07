@@ -20,9 +20,9 @@ Also install MQTT that we will need later:
 npm install mqtt -g
 ```
 
-## Define AsyncAPI specs
+## Define AsyncAPI 2.6.0 specs
 
-Define [account-service.yaml](./account-service.yaml) for the Account Service.
+Define [account-service-2.6.yaml](./account-service-2.6.yaml) for the Account Service.
 The key part is the `subscribe` operation that says "This service publishes
 messages to the `user/signedup` channel:
 
@@ -35,7 +35,7 @@ channels:
       ...
 ```
 
-Define [email-service.yaml](./email-service.yaml) for the Email Service.
+Define [email-service-2.6.yaml](./email-service-2.6.yaml) for the Email Service.
 The key part is the `publish` operation that says "This service receives
 messages from the `user/signedup` channel:
 
@@ -48,19 +48,54 @@ channels:
       ...
 ```
 
-Note: Since most of [account-service.yaml](./account-service.yaml) and
-[email-service.yaml](./email-service.yaml) are the same, you can instead created
-a [common.yaml](./common.yaml) to encapsulate the common config and simply refer
-to hem from [account-service-common.yaml](./account-service-common.yaml) and
-[email-service-common.yaml](./email-service-common.yaml).
+Note: Since most of [account-service-2.6.yaml](./account-service-2.6.yaml) and
+[email-service-2.6.yaml](./email-service-2.6.yaml) are the same, you can instead created
+a [common-2.6.yaml](./commo-2.6.yaml) to encapsulate the common config and simply refer
+to hem from [account-service-common-2.6.yaml](./account-service-common-2.6.yaml) and
+[email-service-common-2.6.yaml](./email-service-common-2.6.yaml).
+
+## Define AsyncAPI 3.0.0 specs
+
+Here's the same specs in AsyncAPI 3.0.0.
+
+Define [account-service-3.0.yaml](./account-service-3.0.yaml) for the Account Service.
+The key part is the `publishUserSignedUp` operation with `send` action that says
+"This service sends messages to the `user/signedup` channel:
+
+```yaml
+operations:
+  publishUserSignedUp:
+    action: send
+    channel:
+      $ref: '#/channels/user~1signedup'
+    messages:
+      - $ref: '#/channels/user~1signedup/messages/publishUserSignedUp.message'
+```
+
+Define [email-service-3.0.yaml](./email-service-3.0.yaml) for the Email Service.
+The key part is the `receiveUserSignedUp` operation with `receive` action that
+says "This service receives messages on the `user/signedup` channel:
+
+```yaml
+operations:
+  receiveUserSignedUp:
+    action: receive
+    channel:
+      $ref: '#/channels/user~1signedup'
+    messages:
+      - $ref: '#/channels/user~1signedup/messages/receiveUserSignedUp.message'
+```
 
 ## Validate AsyncAPI specs
 
 Validate AsyncAPI file:
 
 ```sh
-asyncapi validate account-service.yaml
-asyncapi validate email-service.yaml
+asyncapi validate account-service-2.6.yaml
+asyncapi validate email-service-2.6.yaml
+
+asyncapi validate account-service-3.0.yaml
+asyncapi validate email-service-3.0.yaml
 ```
 
 ## Generate code from the AsyncAPI specs
