@@ -104,15 +104,28 @@ Generate code from the AsyncAPI spec:
 
 ```sh
 asyncapi generate fromTemplate email-service-2.6.yaml @asyncapi/nodejs-template -o email-service-2.6 -p server=test
+
+asyncapi generate fromTemplate email-service-3.0.yaml @asyncapi/nodejs-template -o email-service-3.0 -p server=test
+```
+
+Install dependencies:
+
+```sh
+cd email-service-2.6
+npm install
+
+cd email-service-3.0
+npm install
 ```
 
 Start the generated application:
 
 ```sh
 node test-email-service-2.6.js
+node test-email-service-3.0.js
 
 SUB  Subscribed to user/signedup
-Email Service 1.0.0 is ready! 
+Email Service 1.0.0 is ready!
 ```
 
 Send message to the generated application:
